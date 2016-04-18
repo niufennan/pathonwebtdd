@@ -24,7 +24,7 @@ class NewVisitorTest(unittest.TestCase):
 
 		#应用邀请她输入一个待办事项
 		inputbox=self.browser.find_element_by_id("id_new_item")
-		self.assertEqual(inputbox.get_attribute("placeholder","Enter a to-do item"))
+		self.assertEqual(inputbox.get_attribute("placeholder"),"Enter a to-do item")
 
 
 		#她在一个文本框中输入了 “Buy peacock feathers”
@@ -33,11 +33,11 @@ class NewVisitorTest(unittest.TestCase):
 
 		#她按回车后，页面更新了
 		#待办事项表格中显示了 “1 Buy peacock feathers”
-		inputbox.send_keys(Keys.Enter)
+		inputbox.send_keys(Keys.ENTER)
 
 		table=self.browser.find_element_by_id("id_list_table")
 		rows=table.find_elements_by_tag_name("tr")
-		self.assertTrue(any(row.text=="1:Buy peacock feathers" for row in rows))
+		self.assertTrue(any(row.text=="1:Buy peacock feathers" for row in rows),"New to-do item did not appear in table")
 
 		#页面中有显示了一个文本框 可以输入其他的待办事项
 		#她输入了“Use peacock feathers to make a fly”
