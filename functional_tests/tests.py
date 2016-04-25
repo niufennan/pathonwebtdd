@@ -40,8 +40,10 @@ class NewVisitorTest(LiveServerTestCase):
 		#她按回车后，页面更新了
 		#待办事项表格中显示了 “1 Buy peacock feathers”
 		inputbox.send_keys(Keys.ENTER)
-
+		
 		edith_list_url=self.browser.current_url
+
+
 		self.assertRegex(edith_list_url,"/lists/.+")
 
 		self.check_for_row_in_list_table("1: Buy peacock feathers")
@@ -82,7 +84,7 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 
 		#弗朗西斯获得了唯一的URL
-		francis_list_url=self.borwser.current_url
+		francis_list_url=self.browser.current_url
 		self.assertRegex(francis_list_url,"/lists/.+")
 		self.assertNotEqual(francis_list_url,edith_list_url)
 
