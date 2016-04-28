@@ -60,8 +60,9 @@ class NewVisitorTest(LiveServerTestCase):
 		#待办事项表格中显示了 “1 Buy peacock feathers”
 		inputbox.send_keys(Keys.ENTER)
 		#页面再次更新，他的清单中显示了两个待办事项
-		self.check_for_row_in_list_table("1: Buy peacock feathers")
 		self.check_for_row_in_list_table("2: Use peacock feathers to make a fly")
+		self.check_for_row_in_list_table("1: Buy peacock feathers")
+		
 
 
 		#现在一个叫弗朗西斯的访问首页
