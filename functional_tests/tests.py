@@ -1,11 +1,11 @@
 # -*-coding:utf8-*-
 
 from selenium import webdriver
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.keys import Keys
 import unittest
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 	"""docstring for NewVisitorTest"""
 	def setUp(self):
 		self.browser=webdriver.Firefox()
@@ -17,6 +17,17 @@ class NewVisitorTest(LiveServerTestCase):
 		table=self.browser.find_element_by_id("id_list_table")
 		rows=table.find_elements_by_tag_name("tr")
 		self.assertIn(row_text,[row.text for row in rows])
+
+	def test_layout_and_styling(self):
+		#伊迪斯访问首页
+		self.browser.get(self.live_server_url)
+		self.browser.set_window_size(1024,786)
+		#他看到输入框完美的剧中显示
+		inputbox=self.browser.find_element_by_id("id_new_item")
+
+		self.assertAlmostEqual(inputbox.location['x']+inputbox.size['width']/2,512,delta=5)
+
+
 
 	def test_can_start_a_list_and_retrivev_it_later(self):
 		#伊利斯听说有一个很酷的在线代办事项应用
